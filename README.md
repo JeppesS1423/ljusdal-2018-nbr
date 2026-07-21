@@ -39,6 +39,18 @@ dNBR = NBR_pre − NBR_post
 | 0.44 – 0.66 | Moderate-high severity |
 | > 0.66 | High severity |
 
+## Validation
+
+This analysis maps **7,247 ha** of burned area (sum of low, moderate-low,
+moderate-high, and high severity classes) within the study AOI.
+
+The Ljusdal fire complex is independently reported at 8,995 ha in
+peer-reviewed research (Kelly et al., 2021, *Global Change Biology*,
+https://doi.org/10.1111/gcb.15721). The gap is consistent with the AOI
+being a single bounding box around part of the complex, rather than a
+polygon covering its full extent, the fire complex was actually three
+separate fires that merged, and this AOI likely doesn't capture all of it.
+
 ## Repo structure
 
 ```
