@@ -1,28 +1,27 @@
-# Wildfire Burn Severity Mapping — Ljusdal, Sweden (2018)
+# Wildfire Burn Severity Mapping, Ljusdal, Sweden (2018)
 
 Maps burn severity from the 2018 Ljusdal wildfire using Sentinel-2 L2A imagery,
 via the Normalized Burn Ratio (NBR) / differenced NBR (dNBR) method.
 
-[Burn severity map](data/processed/burn_severity.png)
+![Burn severity map](data/processed/burn_severity.png)
 
 ## Summary
 
 - **AOI:** ~20 km × 20 km bounding box around Ljusdal, Sweden
 - **Data:** Sentinel-2 L2A surface reflectance, via the Copernicus Data Space Ecosystem
 - **Pre-fire scene:** 2018-07-02
-- **Post-fire scene:** <!-- TODO: confirm final date — see Known Issues -->
+- **Post-fire scene:** 2018-09-02
 - **Method:** NBR (NIR/SWIR band ratio) → dNBR → classified into 5 severity classes
-- **Mapped burned area:** <!-- TODO: fill in from notebook 03's area table -->
 
 ## Method
 
-1. **AOI & scene search** — define the fire extent as a WGS84 polygon, query the
+1. **AOI & scene search** - define the fire extent as a WGS84 polygon, query the
    Copernicus ODATA catalogue for cloud-free Sentinel-2 L2A scenes before and
    after the fire.
-2. **Preprocessing** — clip both scenes to the AOI, mask cloud/shadow/water
+2. **Preprocessing**  clip both scenes to the AOI, mask cloud/shadow/water
    pixels using the Scene Classification (SCL) band, export NIR (B8A) and SWIR
    (B12) as GeoTIFFs.
-3. **Analysis** — compute NBR for each date, difference them into dNBR, compute
+3. **Analysis** - compute NBR for each date, difference them into dNBR, compute
    RdNBR as a vegetation-vigor-normalized comparison layer, classify dNBR into
    5 severity classes (USGS/FIREMON thresholds), and export a colored,
    georeferenced severity raster.
@@ -60,7 +59,7 @@ pip install -r requirements.txt
 cp .env.example .env   # then fill in CDSE_USERNAME / CDSE_PASSWORD
 ```
 
-Credentials are free — register at
+Credentials are free, register at
 [dataspace.copernicus.eu](https://dataspace.copernicus.eu).
 
 ## Running
@@ -71,8 +70,8 @@ to `data/`, which the next notebook reads back in.
 
 ## Limitations
 
-- Single pre/post image pair — some of the measured NBR change reflects normal
-  July→autumn seasonal vegetation change, not fire, since no unburned control
+- Single pre/post image pair, some of the measured NBR change reflects normal
+  July to autumn seasonal vegetation change, not fire, since no unburned control
   area or prior-year baseline was differenced out.
 - Severity thresholds are standard literature values, not calibrated or
   validated against ground truth or an independent burned-area product
